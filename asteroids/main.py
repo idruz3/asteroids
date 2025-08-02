@@ -19,7 +19,7 @@ def main():
     
     Player.containers = updateable, drawable
 
-    
+
     Asteroid.containers = asteroids, updateable, drawable
     AsteroidField.containers = (updateable,)
     asteroid_field = AsteroidField()
@@ -31,6 +31,11 @@ def main():
         
         screen.fill("black")
         updateable.update(dt)
+
+        for asteroid in asteroids:
+            if player.colides_with(asteroid):
+                print("Player collided with an asteroid!")
+                exit()
         for sprite in drawable:
             sprite.draw(screen)
         pygame.display.flip()
